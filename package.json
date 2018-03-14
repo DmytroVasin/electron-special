@@ -20,7 +20,6 @@
     "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.0.0",
     "redux-actions": "^2.2.1",
-    "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
@@ -46,7 +45,7 @@
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "develop": "npm run private:compile -- --source-maps true && run-p -r private:watch private:serve",
+    "dev": "npm run private:compile -- --source-maps true && run-p -r private:watch private:serve",
     "test": "electron-mocha --renderer -R spec --require babel-core/register test/**/*.spec.js",
     "lint": "eslint --no-ignore scripts app test *.js",
     "pack": "run-s private:clean private:compile private:build:all",

@@ -1,5 +1,5 @@
-actionTypes = {
-  'SET_USER' = 'SET_USER',
+const actionTypes = {
+  'SET_USER': 'SET_USER',
 }
 
 export default actionTypes

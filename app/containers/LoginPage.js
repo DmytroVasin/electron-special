@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (data) => {
       dispatch({ type: types.SET_USER, payload: data })
-      dispatch(push('/loggedin'));
+      // dispatch(push('/loggedin'));
     }
   };
 };
