@@ -3,6 +3,7 @@ import { routerMiddleware, routerReducer as routing, push } from 'react-router-r
 import thunk from 'redux-thunk';
 
 import user from './reducers/user';
+import settings from './reducers/settings';
 import userActions from './actions/user';
 
 export default function configureStore(initialState, routerHistory) {
@@ -15,6 +16,7 @@ export default function configureStore(initialState, routerHistory) {
 
   const reducers = {
     user,
+    settings,
     routing
   };
 

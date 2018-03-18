@@ -6,17 +6,18 @@ import { createMemoryHistory } from 'history';
 import Router from './routes';
 import configureStore from './store';
 
-const syncHistoryWithStore = (store, history) => {
-  const { routing } = store.getState();
-  if(routing && routing.location) {
-    history.replace(routing.location);
-  }
-};
+// const syncHistoryWithStore = (store, history) => {
+//   const { routing } = store.getState();
+//   if(routing && routing.location) {
+//     history.replace(routing.location);
+//   }
+// };
 
 const initialState = {};
 const routerHistory = createMemoryHistory();
 const store = configureStore(initialState, routerHistory);
-syncHistoryWithStore(store, routerHistory);
+
+// syncHistoryWithStore(store, routerHistory);
 
 ReactDOM.render(
   <Provider store={store}>

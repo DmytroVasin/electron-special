@@ -8,20 +8,17 @@ export default class Login extends Component {
   };
 
   state = {
-    username: ''
+    token: ''
   };
 
   handleLogin = () => {
     this.props.onLogin({
-      username: this.state.username,
-      loggedIn: true
+      token: this.state.token
     });
   }
 
   handleChange = (e) => {
-    this.setState({
-      username: e.target.value
-    });
+    this.setState({ token: e.target.value });
   }
 
   handleClick = () => {
@@ -33,7 +30,7 @@ export default class Login extends Component {
       <div>
         <button onClick={this.handleClick} >COLOR RED!!!!</button>
         <h2>Login</h2>
-        <input onChange={this.handleChange} type="text" value={this.state.username} />
+        <input onChange={this.handleChange} type="text" value={this.state.token} />
         <button onClick={this.handleLogin}>Log In</button>
       </div>
     );
