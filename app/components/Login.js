@@ -28,7 +28,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick} >COLOR RED!!!!</button>
+        <button onClick={this.handleClick} >Clear Database</button>
         <h2>Login</h2>
         <input onChange={this.handleChange} type="text" value={this.state.token} />
         <button onClick={this.handleLogin}>Log In</button>

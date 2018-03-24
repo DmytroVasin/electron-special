@@ -9,8 +9,6 @@ export function fetchToken() {
 
     const settings = Database.getIn('settings', {})
 
-    // Object.keys(settings).length === 0
-
     dispatch({
       type: 'FETCH_SETTINGS',
       payload: settings,

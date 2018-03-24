@@ -1,5 +1,7 @@
 import Store from 'electron-store'
 
+// app.getPath('userData') =>  ~/Library/Application Support/electron-special
+
 class Database {
   constructor() {
     this.settingsStore = new Store({
