@@ -17,12 +17,8 @@ class Calculator extends Component {
     const { displayValue, firstValue, operator } = this.state
 
     if (operator) {
-      let result = this.calculate(firstValue, operator, displayValue)
-
       this.setState((state) => {
         return {
-          displayValue: result,
-          firstValue: result,
           operator: typeOfAction,
           previousKeyType: 'operator'
         }
@@ -93,7 +89,24 @@ class Calculator extends Component {
   }
 
   onClear = () => {
-    // console.log('....')
+    const { displayValue } = this.state
+
+    if ( displayValue === '0' ) {
+      this.setState((state) => {
+        return {
+          displayValue: '0',
+          firstValue: null,
+          operator: null,
+          previousKeyType: null
+        }
+      })
+    } else {
+      this.setState((state) => {
+        return {
+          displayValue: '0'
+        }
+      })
+    }
   }
 
   onCalculate = () => {
@@ -110,10 +123,20 @@ class Calculator extends Component {
     })
   }
 
+  isActive = (currentOperator) => {
+    const { operator, previousKeyType } = this.state
+
+    if (previousKeyType !== 'operator') return ''
+    if (operator !== currentOperator) return ''
+
+    return 'is-active'
+  }
+
   render() {
     console.log(this.state)
 
-    const { displayValue, operator, previousKeyType } = this.state
+    const { displayValue, operator } = this.state
+    const clearButtonText = +displayValue ? 'C' : 'AC'
 
     return (
       <div className="calculator">
@@ -121,26 +144,31 @@ class Calculator extends Component {
 
         <div className="calculator__keys">
 
-          <button className={"key--operator " + ( (previousKeyType === 'operator' && operator === 'add') ? 'is-active' : '')} onClick={ () => this.handleOperator('add') }>+</button>
-          <button className={"key--operator " + ( (previousKeyType === 'operator' && operator === 'subtract') ? 'is-active' : '')} onClick={ () => this.handleOperator('subtract') }>-</button>
-          <button className={"key--operator " + ( (previousKeyType === 'operator' && operator === 'multiply') ? 'is-active' : '')} onClick={ () => this.handleOperator('multiply') }>&times;</button>
-          <button className={"key--operator " + ( (previousKeyType === 'operator' && operator === 'divide') ? 'is-active' : '')} onClick={ () => this.handleOperator('divide') }>÷</button>
+          <button onClick={ this.onClear }>{ clearButtonText }</button>
+          <button>+/-</button>
+          <button>%</button>
+          <button className={'key--operator ' + this.isActive('divide') } onClick={ () => this.handleOperator('divide') }>÷</button>
 
           <button onClick={ () => this.handleNumber('7') }>7</button>
           <button onClick={ () => this.handleNumber('8') }>8</button>
           <button onClick={ () => this.handleNumber('9') }>9</button>
+          <button className={'key--operator ' + this.isActive('multiply') } onClick={ () => this.handleOperator('multiply') }>&times;</button>
+
+
+
           <button onClick={ () => this.handleNumber('4') }>4</button>
           <button onClick={ () => this.handleNumber('5') }>5</button>
           <button onClick={ () => this.handleNumber('6') }>6</button>
+          <button className={'key--operator ' + this.isActive('subtract') } onClick={ () => this.handleOperator('subtract') }>-</button>
+
           <button onClick={ () => this.handleNumber('1') }>1</button>
           <button onClick={ () => this.handleNumber('2') }>2</button>
           <button onClick={ () => this.handleNumber('3') }>3</button>
-          <button onClick={ () => this.handleNumber('0') }>0</button>
+          <button className={'key--operator ' + this.isActive('add') } onClick={ () => this.handleOperator('add') }>+</button>
 
+          <button className={'key--zero'} onClick={ () => this.handleNumber('0') }>0</button>
           <button onClick={ this.onDecimalPoint }>.</button>
-          <button onClick={ this.onClear }>AC</button>
-
-          <button className="key--equal" onClick={ this.onCalculate }>=</button>
+          <button className={'key--operator'} onClick={ this.onCalculate }>=</button>
         </div>
       </div>
     );
