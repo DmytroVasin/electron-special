@@ -43,4 +43,7 @@ npm run pack:linux
 
 
 https://github.com/akash-mahanty/calculator
-http://jsfiddle.net/gvNNJ/1/
+
+
+App Path:
+/Users/dv/Library/Application Support/electron-special
