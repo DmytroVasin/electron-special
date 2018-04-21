@@ -1,5 +1,4 @@
 import Database from '../helpers/db.js';
-import { push } from 'react-router-redux';
 
 export function login(text) {
   return { type: 'USER_LOGIN' }

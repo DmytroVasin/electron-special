@@ -1,9 +1,13 @@
 import path from 'path';
 import url from 'url';
 import {app, BrowserWindow, Menu} from 'electron';
+import MenuBuilder from './menu';
 import debounce from 'lodash/debounce'
 
+import initEventBus from './main/eventBus';
 import Database from './helpers/db.js';
+import { configureUpdater, checkUpdater } from './main/app_updater';
+import { CHECK_UPDATE_TIMEOUT, SMALL_WIDTH, SMALL_HEIGHT } from './constants/app'
 
 const isDevelopment = (process.env.NODE_ENV === 'development');
 
@@ -53,8 +57,6 @@ const watchWindowDimentions = win => {
 
 
 app.on('window-all-closed', () => {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit();
   }
@@ -65,23 +67,27 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
-  const MIN_HEIGHT = 500
-  const MIN_WIDTH = 800
+  initEventBus()
 
-  const savedDimensions = Database.getIn('window.dimensions', { width: MIN_WIDTH, height: MIN_HEIGHT })
   const savedPositions = Database.getIn('window.positions', null)
+  const savedDimentions = Database.getIn('window.dimensions', { width: SMALL_WIDTH, height: SMALL_HEIGHT })
 
   mainWindow = new BrowserWindow({
-    minHeight: MIN_HEIGHT,
-    minWidth: MIN_WIDTH,
-    height: savedDimensions.height,
-    width: savedDimensions.width,
+    width: savedDimentions.width,
+    height: savedDimentions.height,
     show: false,
+    frame: false,
+    hasShadow: false,
+    transparent: true,
+    resizable: false,
+    vibrancy: 'dark',
   });
 
   if (savedPositions) {
     mainWindow.setPosition(savedPositions.x, savedPositions.y)
   }
+
+  configureUpdater(mainWindow)
 
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -91,7 +97,11 @@ app.on('ready', async () => {
 
   // show window once on first load
   mainWindow.webContents.once('did-finish-load', () => {
-    mainWindow.show();
+    mainWindow.show()
+
+    // if (process.env.NODE_ENV === 'production') {
+      setTimeout(checkUpdater, CHECK_UPDATE_TIMEOUT)
+    // }
   });
 
   mainWindow.webContents.on('did-finish-load', () => {
@@ -100,13 +110,6 @@ app.on('ready', async () => {
     // 2. Click on icon in dock should re-open the window
     // 3. ⌘+Q should close the window and quit the app
     if (process.platform === 'darwin') {
-      mainWindow.on('close', function (e) {
-        if (!forceQuit) {
-          e.preventDefault();
-          mainWindow.hide();
-        }
-      });
-
       app.on('activate', () => {
         mainWindow.show();
       });
@@ -124,17 +127,9 @@ app.on('ready', async () => {
   watchWindowDimentions(mainWindow);
 
   if (isDevelopment) {
-    // auto-open dev tools
-    mainWindow.webContents.openDevTools();
-
-    // add inspect element on right click menu
-    mainWindow.webContents.on('context-menu', (e, props) => {
-      Menu.buildFromTemplate([{
-        label: 'Inspect element',
-        click() {
-          mainWindow.inspectElement(props.x, props.y);
-        }
-      }]).popup(mainWindow);
-    });
+    mainWindow.webContents.openDevTools({ detach: true });
   }
+
+  const menuBuilder = new MenuBuilder(mainWindow);
+  menuBuilder.buildMenu();
 });

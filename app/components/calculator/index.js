@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import CalculatorDisplay from './CalculatorDisplay'
 
 class Calculator extends Component {
   constructor(props) {
@@ -133,17 +134,14 @@ class Calculator extends Component {
   }
 
   render() {
-    console.log(this.state)
-
     const { displayValue, operator } = this.state
     const clearButtonText = +displayValue ? 'C' : 'AC'
 
     return (
       <div className="calculator">
-        <div className="calculator__display">{ displayValue }</div>
+        <CalculatorDisplay value={displayValue} />
 
         <div className="calculator__keys">
-
           <button onClick={ this.onClear }>{ clearButtonText }</button>
           <button>+/-</button>
           <button>%</button>

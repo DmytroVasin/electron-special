@@ -1,27 +1,25 @@
 {
   "name": "electron-special",
   "version": "0.0.0",
-  "description": "Description of the project",
+  "description": "Simple unix caculator",
   "main": "init.js",
   "author": {
-    "name": "Jordan Schroter",
-    "email": "email@author.com"
+    "name": "Dmytro Vasin",
+    "email": "dmytro.vasin@gmail.com"
   },
   "repository": "https://github.com/DmytroVasin/electron-special",
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.22.0",
+    "chalk": "^2.4.0",
     "electron-store": "^1.3.0",
-    "history": "^4.6.3",
+    "electron-updater": "2.14.0",
     "lodash": "^4.17.5",
     "npm": "^5.8.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
-    "react-css-modules": "^4.7.2",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.2",
-    "react-router": "^4.1.2",
-    "react-router-redux": "^5.0.0-alpha.8",
+    "react-redux": "^5.0.7",
     "redux": "^3.0.0",
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0",

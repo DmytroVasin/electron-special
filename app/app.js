@@ -1,29 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import { createMemoryHistory } from 'history';
-import Router from './routes';
 import configureStore from './store';
+import initEventBus from './renderer/eventBus'
 
-// const syncHistoryWithStore = (store, history) => {
-//   const { routing } = store.getState();
-//   if(routing && routing.location) {
-//     history.replace(routing.location);
-//   }
-// };
+import InitContainer from './containers/InitContainer'
 
 const initialState = {};
-const routerHistory = createMemoryHistory();
-const store = configureStore(initialState, routerHistory);
-
-// syncHistoryWithStore(store, routerHistory);
+const store = configureStore(initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={routerHistory}>
-      <Router />
-    </ConnectedRouter>
+    <InitContainer />
   </Provider>,
   document.getElementById('root')
 );
+
+initEventBus(store)

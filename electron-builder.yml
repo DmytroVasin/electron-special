@@ -1,6 +1,6 @@
-appId: com.example.app
-copyright: Example co
-productName: MyApp
+appId: com.electron.special
+copyright: 2018 ©
+forceCodeSigning: true
 
 asar: true
 
@@ -35,3 +35,8 @@ linux:
   target:
     - deb
     - AppImage
+
+publish:
+  - provider: github
+    owner: DmytroVasin
+    repo: electron-special

@@ -38,3 +38,9 @@ npm run pack:mac
 npm run pack:win
 npm run pack:linux
 ```
+
+
+
+
+https://github.com/akash-mahanty/calculator
+http://jsfiddle.net/gvNNJ/1/

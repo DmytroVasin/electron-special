@@ -1,32 +1,26 @@
-import React, { Component } from 'react';
-import Database from '../helpers/db.js';
+import React, { Component, StrictMode } from 'react';
+// import Database from '../helpers/db.js';
+
+import Calculator from './Calculator'
+import AppUpdater from './AppUpdater'
+import AppHeader from './AppHeader'
 
 class Init extends Component {
-  constructor(props) {
-    super(props)
-
-    this.props.fetchToken()
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-    if (!nextProps.settings.fetched) { return false }
-
-    if (nextProps.settings.token) {
-      this.props.redirectToHome()
-    } else {
-      this.props.redirectToSignIn()
-    }
-  }
+  // handleClick = () => {
+  //   Database.clear();
+  // }
 
   render() {
     return (
-      <div>
-        Loading...
-      </div>
+      <StrictMode>
+
+        <AppHeader />
+        <AppUpdater />
+        <Calculator displayValue='0' />
+
+      </StrictMode>
     );
   }
 }
-
 
 export default Init
