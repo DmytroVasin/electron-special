@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+import calculator from './reducers/calculator';
 import user from './reducers/user';
 import settings from './reducers/settings';
 import updater from './reducers/updater';
@@ -12,6 +13,7 @@ export default function configureStore(initialState) {
   };
 
   const reducers = {
+    calculator,
     user,
     settings,
     updater

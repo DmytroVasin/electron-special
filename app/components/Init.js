@@ -16,7 +16,7 @@ class Init extends Component {
 
         <AppHeader />
         <AppUpdater />
-        <Calculator displayValue='0' />
+        <Calculator />
 
       </StrictMode>
     );

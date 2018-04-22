@@ -3,6 +3,12 @@ const actionTypes = {
   'FETCH_SETTINGS': 'FETCH_SETTINGS',
   'SET_TOKEN': 'SET_TOKEN',
   'SET_UPDATE_STATUS': 'SET_UPDATE_STATUS',
+
+
+  'RESET_CALCULATOR':  'RESET_CALCULATOR',
+  'ADD_NUMBER':        'ADD_NUMBER',
+  'ADD_DECIMAL':       'ADD_DECIMAL',
+  'CALCULATE':         'CALCULATE'
 }
 
 export default actionTypes
