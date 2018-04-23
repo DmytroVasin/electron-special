@@ -1,111 +1,107 @@
 import types from '../constants/actionTypes'
+import Calc from '../libs/calc'
+
+const calc = new Calc()
+let diffState = {}
 
 const initialState = {
-  displayValue: 0,
-  firstValue: null,
+  displayValue: '0',
+  prevValue: null,
   operator: null,
   previousKeyType: null,
 }
 
 export default function calculator(state = initialState, action = {}) {
-  const { type } = action
+  const { displayValue, prevValue, operator, previousKeyType } = state
+  const { type, payload } = action
 
   switch (type) {
   case types.RESET_CALCULATOR:
     return initialState
 
   case types.ADD_OPERATOR:
-    // action.payload
+    const operator = payload
 
-    // const { displayValue, firstValue, operator } = this.state
+    if (operator) {
+      diffState = {
+        operator: operator,
+        previousKeyType: 'operator'
+      }
+    } else {
+      diffState = {
+        operator: operator,
+        prevValue: displayValue,
+        previousKeyType: 'operator'
+      }
+    }
 
-    // if (operator) {
-    //   this.setState((state) => {
-    //     return {
-    //       operator: typeOfAction,
-    //       previousKeyType: 'operator'
-    //     }
-    //   })
-    // } else {
-    //   this.setState(({ displayValue }) => {
-    //     return {
-    //       operator: typeOfAction,
-    //       firstValue: displayValue,
-    //       previousKeyType: 'operator'
-    //     }
-    //   })
-    // }
-    return initialState
+    return { ...state, ...diffState }
 
   case types.ADD_NUMBER:
-    // action.payload
+    const digit = payload
+    let newValue
 
-    // let newValue
-    // const { displayValue, firstValue, operator, previousKeyType } = this.state
+    if (previousKeyType === 'operator') {
+      newValue = digit
+    } else {
+      newValue = displayValue === '0' ? digit : displayValue + digit
+    }
 
-    // if (previousKeyType === 'operator') {
-    //   newValue = buttonValue
-    // } else {
-    //   if (displayValue === '0') {
-    //     newValue = buttonValue
-    //   } else {
-    //     newValue = displayValue + buttonValue
-    //   }
-    // }
-
-    // this.setState(() => ({
-    //   displayValue: newValue,
-    //   previousKeyType: 'number'
-    // }))
-    return initialState
+    return { ...state,
+      displayValue:    newValue,
+      previousKeyType: 'number'
+    }
 
   case types.ADD_DECIMAL_POINT:
-    // if (previousKeyType === 'operator') {
-    //   this.setState(() => ({
-    //     displayValue: '0.',
-    //     previousKeyType: 'number'
-    //   }))
-    // } else {
-    //   if (displayValue.includes('.')) return
+    if (previousKeyType === 'operator') {
+      diffState = {
+        displayValue: '0.',
+        previousKeyType: 'number'
+      }
+    } else {
+      if (!displayValue.includes('.')) {
+        diffState = {
+          displayValue: displayValue + '.',
+          previousKeyType: 'number'
+        }
+      }
+    }
 
-    //   this.setState(() => ({
-    //     displayValue: displayValue + '.',
-    //     previousKeyType: 'number'
-    //   }))
-    // }
-    // return { ...state, token: action.payload }
-    return initialState
+    return { ...state, ...diffState }
 
   case types.CALCULATE:
+    let result = calc(prevValue, operator, displayValue)
 
-    // const { displayValue, firstValue, operator } = this.state
-    // let result = this.calculate(firstValue, operator, displayValue)
+    if (prevValue == null) {
+      return state
+    }
 
-    // this.setState((state) => {
-    //   return {
-    //     displayValue: result,
-    //     firstValue: result,
-    //     operator: null,
-    //     previousKeyType: 'operator'
-    //   }
-    // })
+    return {
+      displayValue: String(result),
+      prevValue: String(result),
+      operator: null,
+      previousKeyType: 'operator'
+    }
 
-    // ---------------
+  case types.INPUT_PERCENT:
+    diffState = {
+      prevValue:       null,
+      operator:        null,
+      previousKeyType: 'operator'
+    }
+    diffState['displayValue'] = calc.calculate(prevValue, operator, displayValue)
 
-    // let result = ''
+    return { ...state, ...diffState }
 
-    // if (operator === 'add') {
-    //   result = parseFloat(n1) + parseFloat(n2)
-    // } else if (operator === 'subtract') {
-    //   result = parseFloat(n1) - parseFloat(n2)
-    // } else if (operator === 'multiply') {
-    //   result = parseFloat(n1) * parseFloat(n2)
-    // } else if (operator === 'divide') {
-    //   result = parseFloat(n1) / parseFloat(n2)
-    // }
+  case types.TOGGLE_SIGN:
+    diffState = {
+      prevValue:       null,
+      operator:        null,
+      previousKeyType: 'operator'
+    }
+    diffState['displayValue'] = calc.calculate(prevValue, operator, displayValue)
 
-    // return result.toString()
-    return initialState
+    return { ...state, ...diffState }
 
   default:
     return state

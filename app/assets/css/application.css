@@ -101,7 +101,7 @@ button:focus {
 :root {
   font-weight: 200;
   /*font-family: sans-serif;*/
-  font-family: 'Helvetica Neue LT Pro', 'Helvetica', sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 html, head,

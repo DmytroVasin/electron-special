@@ -8,7 +8,10 @@ const actionTypes = {
   'RESET_CALCULATOR':  'RESET_CALCULATOR',
   'ADD_NUMBER':        'ADD_NUMBER',
   'ADD_DECIMAL':       'ADD_DECIMAL',
-  'CALCULATE':         'CALCULATE'
+  'CALCULATE':         'CALCULATE',
+
+  'INPUT_PERCENT':     'INPUT_PERCENT',
+  'TOGGLE_SIGN':       'TOGGLE_SIGN',
 }
 
 export default actionTypes

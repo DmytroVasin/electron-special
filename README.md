@@ -47,3 +47,7 @@ https://github.com/akash-mahanty/calculator
 
 App Path:
 /Users/dv/Library/Application Support/electron-special
+
+
+
+https://codepen.io/DmytroVasin/pen/bMEbwj?editors=1010

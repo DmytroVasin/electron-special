@@ -20,5 +20,5 @@ export const getFontSizeFor = ({ length }) => {
 }
 
 export const writeToClipboard = (text) => {
-  clipboard.write({ text: text })
+  clipboard.writeText(text)
 }

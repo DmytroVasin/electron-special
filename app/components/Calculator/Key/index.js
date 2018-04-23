@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Button extends Component {
+class Key extends Component {
   onClick = () => {
-    const { handleClick, key } = this.props
+    const { handleClick, label } = this.props
 
-    handleClick(key)
+    handleClick(label)
   }
 
   render() {
-    const { key, isZero, isOperator, isActive } = this.props
+    const { label, isZero, isOperator, isActive } = this.props
     let currentClass = ''
 
     if (isZero) { currentClass += ' key--zero' }
@@ -18,18 +18,18 @@ class Button extends Component {
 
     return (
       <button onClick={ this.onClick } className={currentClass}>
-        { key }
+        { label }
       </button>
     );
   }
 }
 
-Button.propTypes = {
+Key.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  key: PropTypes.string.isRequired,
-  isZero: PropTypes.bool.isRequired,
-  isOperator: PropTypes.bool.isRequired,
-  isActive: PropTypes.bool.isRequired
+  label: PropTypes.string.isRequired,
+  isZero: PropTypes.bool,
+  isOperator: PropTypes.bool,
+  isActive: PropTypes.bool
 }
 
-export default Button
+export default Key
