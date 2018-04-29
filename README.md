@@ -42,7 +42,6 @@ npm run pack:linux
 
 
 
-https://github.com/akash-mahanty/calculator
 
 
 App Path:

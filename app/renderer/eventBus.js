@@ -18,8 +18,8 @@ export default ({ dispatch, getState }) => {
   })
 
   const copyDisplay = () => {
-    const { updater } = getState()
-    writeToClipboard(updater.status)
+    const { calculator } = getState()
+    writeToClipboard(calculator.displayValue)
   }
 
   const handlers = {

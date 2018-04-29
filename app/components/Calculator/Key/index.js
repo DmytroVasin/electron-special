@@ -9,16 +9,14 @@ class Key extends Component {
   }
 
   render() {
-    const { label, isZero, isOperator, isActive } = this.props
-    let currentClass = ''
+    const { label, isZero, isOperator, isPicked, children, className } = this.props
+    let currentClass = className
 
-    if (isZero) { currentClass += ' key--zero' }
-    if (isOperator) { currentClass += ' key--operator' }
-    if (isActive) { currentClass += ' is-active' }
+    if (isPicked) { currentClass += ' is-picked' }
 
     return (
       <button onClick={ this.onClick } className={currentClass}>
-        { label }
+        { children }
       </button>
     );
   }
@@ -27,9 +25,7 @@ class Key extends Component {
 Key.propTypes = {
   handleClick: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  isZero: PropTypes.bool,
-  isOperator: PropTypes.bool,
-  isActive: PropTypes.bool
+  isPicked: PropTypes.bool
 }
 
 export default Key

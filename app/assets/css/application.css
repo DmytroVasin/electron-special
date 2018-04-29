@@ -99,9 +99,8 @@ button:focus {
 }
 
 :root {
-  font-weight: 200;
-  /*font-family: sans-serif;*/
   font-family: Roboto, sans-serif;
+  font-weight: 600;
 }
 
 html, head,
@@ -131,6 +130,7 @@ body, #root {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  font-weight: 200;
 }
 
 .display-value {
@@ -140,118 +140,4 @@ body, #root {
 
   display: flex;
   justify-content: flex-end;
-}
-
-.calculator__keys {
-  display: flex;
-  text-align: center;
-  flex-wrap: wrap;
-
-  font-size: 22px;
-
-  -webkit-app-region: no-drag;
-}
-
-.calculator__keys button {
-  width: 58px;
-  height: 48px;
-
-
-  border-style: solid;
-  border-color: #8e8e8e;
-  border-width: 0 1px 1px 0;
-
-  background-color: #e0e0e0;
-}
-
-
-.calculator__keys button:active {
-  background-color: #B2B2B2;
-}
-.calculator__keys button.key--operator:active {
-  background-color: #C47325;
-}
-
-.calculator__keys .key--operator.is-active {
-  border-width: 1px 0px 2px 1px;
-}
-
-.calculator__keys .key--operator:active {
-  background-color: red;
-}
-
-/*
-.calculator__keys .key--operator.is-active:nth-child(4) {
-  border-width: 0 0px 2px 1px;
-}
-*/
-.calculator__keys .key--zero {
-  width: 116px;
-}
-
-.calculator__keys .key--operator {
-  font-size: 26px;
-  color: white;
-  background-color: #f79331;
-  border-right-width: 0;
-}
-
-.window-header {
-  -webkit-app-region: drag;
-  -webkit-user-select: none;
-  height: 20px;
-}
-
-.window-header  .window-header-controls {
-  position: absolute;
-  left: 8px;
-  top: 5px;
-  display: flex;
-}
-
-.window-header .window-header-controls .btn {
-  cursor: pointer;
-  margin-right: 8px;
-  width: 12px;
-  height: 12px;
-}
-
-.window-header .window-header-controls .btn svg {
-  display: block;
-}
-
-.updater {
-  position: relative;
-}
-
-.updater .message {
-  color: red;
-}
-
-.updater .icon-wrapper {
-  position: absolute;
-  top: 13px;
-  left: 15px;
-  width: 20px;
-  height: 20px;
-  border: 1px solid red;
-  background-color: red;
-}
-
-.updater .progress-box {
-  display: flex;
-  position: absolute;
-  top: 77px;
-  right: 1px;
-  left: 1px;
-}
-
-.updater .progress-process{
-  background-color: #f0f5fa;
-  width: 100%;
-}
-
-.updater .progress-process .progress-percents {
-  height: 3px;
-  background-color: #56b500;
 }

@@ -1,0 +1,134 @@
+/*
+  http://chir.ag/projects/name-that-color
+*/
+
+:root {
+  --grey:                  #8E8E8E;
+  --alto:                  #E0E0E0;
+  --alto-light:            #D6D6D6;
+  --sea-buckthorn:         #F79331;
+
+  --active-key:            #B2B2B2;
+  --active-operation:      #C47325;
+  --active-operation-sign: #686868;
+  --active-ns-operation:   #A9A9A9;
+}
+
+.calculator__keys {
+  user-select: none;
+
+  display: grid;
+  grid-gap: 1px;
+  background-color: var(--grey);
+
+  text-align: center;
+  font-size: 22px;
+
+  -webkit-app-region: no-drag;
+}
+
+.calculator__normal {
+  grid-template-columns: repeat(4, 56px);
+  grid-template-rows: repeat(5, 46px);
+
+  grid-template-areas:
+    "clear sign  percent divide"
+    "key_7 key_8 key_9   multiply"
+    "key_4 key_5 key_6   subtract"
+    "key_1 key_2 key_3   add"
+    "key_0 key_0 dot     equals"
+  ;
+}
+.calculator__scientific {
+  grid-template-columns: repeat(7, 58px);
+  grid-template-rows: repeat(5, 48px);
+
+  grid-template-areas:
+    "X X X clear sign  percent divide"
+    "X X X key_7 key_8 key_9   multiply"
+    "X X X key_4 key_5 key_6   subtract"
+    "X X X key_1 key_2 key_3   add"
+    "X X X key_0 key_0 dot     equals"
+  ;
+}
+
+.key-clear {     grid-area: clear; }
+.key-sign {      grid-area: sign; }
+.key-percent {   grid-area: percent; }
+.key-divide {    grid-area: divide; }
+.key-multiply {  grid-area: multiply; }
+.key-subtract {  grid-area: subtract; }
+.key-equals {    grid-area: equals; }
+.key-add {       grid-area: add; }
+.key-9 {         grid-area: key_9; }
+.key-8 {         grid-area: key_8; }
+.key-7 {         grid-area: key_7; }
+.key-6 {         grid-area: key_6; }
+.key-5 {         grid-area: key_5; }
+.key-4 {         grid-area: key_4; }
+.key-3 {         grid-area: key_3; }
+.key-2 {         grid-area: key_2; }
+.key-1 {         grid-area: key_1; }
+.key-0 {         grid-area: key_0; }
+.key-dot {       grid-area: dot; }
+
+button {
+  background-color: var(--alto);
+}
+
+.key-clear,
+.key-sign,
+.key-percent {
+  background-color: var(--alto-light);
+}
+.key-clear:active,
+.key-sign:active,
+.key-percent:active {
+  background-color: var(--active-ns-operation)
+}
+
+.key-divide,
+.key-multiply,
+.key-subtract,
+.key-equals,
+.key-add {
+  font-size: 30px;
+  color: white;
+  background-color: var(--sea-buckthorn);
+  font-weight: 200;
+
+  border: 1px solid var(--sea-buckthorn);
+}
+.key-divide:active,
+.key-multiply:active,
+.key-subtract:active,
+.key-equals:active,
+.key-add:active {
+  color: var(--active-operation-sign);
+  background-color: var(--active-operation)
+}
+.key-divide.is-picked,
+.key-multiply.is-picked,
+.key-subtract.is-picked,
+.key-add.is-picked {
+  border-top-color: var(--grey);
+  border-bottom-color: var(--grey);
+  border-left-color: var(--grey);
+}
+.key-divide.is-picked {
+  border-top-color: var(--sea-buckthorn);
+}
+
+.key-9:active,
+.key-8:active,
+.key-7:active,
+.key-6:active,
+.key-5:active,
+.key-4:active,
+.key-3:active,
+.key-2:active,
+.key-1:active,
+.key-0:active,
+.key-dot:active {
+  background-color: var(--active-key);
+}

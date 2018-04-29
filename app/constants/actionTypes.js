@@ -5,13 +5,15 @@ const actionTypes = {
   'SET_UPDATE_STATUS': 'SET_UPDATE_STATUS',
 
 
-  'RESET_CALCULATOR':  'RESET_CALCULATOR',
+  'ADD_OPERATOR':        'ADD_OPERATOR',
   'ADD_NUMBER':        'ADD_NUMBER',
-  'ADD_DECIMAL':       'ADD_DECIMAL',
-  'CALCULATE':         'CALCULATE',
 
+  'ADD_DECIMAL_POINT':        'ADD_DECIMAL_POINT',
   'INPUT_PERCENT':     'INPUT_PERCENT',
   'TOGGLE_SIGN':       'TOGGLE_SIGN',
+
+  'RESET_CALCULATOR':  'RESET_CALCULATOR',
+  'CALCULATE':         'CALCULATE',
 }
 
 export default actionTypes

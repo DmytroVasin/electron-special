@@ -1,0 +1,35 @@
+.updater {
+  position: relative;
+}
+
+.updater .message {
+  color: red;
+}
+
+.updater .icon-wrapper {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid red;
+  background-color: red;
+}
+
+.updater .progress-box {
+  display: flex;
+  position: absolute;
+  top: 77px;
+  right: 1px;
+  left: 1px;
+}
+
+.updater .progress-process{
+  background-color: #f0f5fa;
+  width: 100%;
+}
+
+.updater .progress-process .progress-percents {
+  height: 3px;
+  background-color: #56b500;
+}

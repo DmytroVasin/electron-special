@@ -1,0 +1,23 @@
+.window-header {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  height: 20px;
+}
+
+.window-header  .window-header-controls {
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  display: flex;
+}
+
+.window-header .window-header-controls .btn {
+  cursor: pointer;
+  margin-right: 8px;
+  width: 12px;
+  height: 12px;
+}
+
+.window-header .window-header-controls .btn svg {
+  display: block;
+}

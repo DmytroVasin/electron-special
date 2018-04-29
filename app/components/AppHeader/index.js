@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { remote } from 'electron'
 import CloseIcon from './svg/CloseIcon'
 import MinimizeIcon from './svg/MinimizeIcon'
 import MaximizeIcon from './svg/MaximizeIcon'
-import { SMALL_WIDTH, SMALL_HEIGHT, BIG_WIDTH, BIG_HEIGHT } from '../../constants/app'
+// import { SMALL_WIDTH, SMALL_HEIGHT, BIG_WIDTH, BIG_HEIGHT } from '../../constants/app'
 
 class WindowHeader extends React.Component {
   state = {
@@ -34,16 +35,16 @@ class WindowHeader extends React.Component {
   handleWindowMinimize = () => {
     remote.getCurrentWindow().minimize()
   }
-  handleWindowMaximize = () => {
-    const currentWindow = remote.getCurrentWindow()
-    const { width, height } = currentWindow.getBounds()
+  // handleWindowMaximize = () => {
+  //   const currentWindow = remote.getCurrentWindow()
+  //   const { width, height } = currentWindow.getBounds()
 
-    if (width === SMALL_WIDTH) {
-      currentWindow.setSize(BIG_WIDTH, BIG_HEIGHT)
-    } else {
-      currentWindow.setSize(SMALL_WIDTH, SMALL_HEIGHT)
-    }
-  }
+  //   if (width === SMALL_WIDTH) {
+  //     currentWindow.setSize(BIG_WIDTH, BIG_HEIGHT)
+  //   } else {
+  //     currentWindow.setSize(SMALL_WIDTH, SMALL_HEIGHT)
+  //   }
+  // }
 
   onMouseHover = () => {
     this.setState(() => ({ isHovered: true }))
@@ -53,6 +54,7 @@ class WindowHeader extends React.Component {
   }
 
   render() {
+    const { onChangeMode } = this.props
     const { isHovered, isFocused } = this.state
 
     return (
@@ -67,13 +69,17 @@ class WindowHeader extends React.Component {
             <MinimizeIcon hover={isHovered} active={isFocused} />
           </div>
 
-          <div className='btn' onClick={ this.handleWindowMaximize }>
+          <div className='btn' onClick={ onChangeMode }>
             <MaximizeIcon hover={isHovered} active={isFocused} />
           </div>
         </div>
       </div>
     )
   }
+}
+
+WindowHeader.propTypes = {
+  onChangeMode: PropTypes.func.isRequired
 }
 
 export default WindowHeader
