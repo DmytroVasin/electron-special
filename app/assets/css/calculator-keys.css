@@ -28,8 +28,8 @@
 }
 
 .calculator__normal {
-  grid-template-columns: repeat(4, 56px);
-  grid-template-rows: repeat(5, 46px);
+  grid-template-columns: repeat(4, 55px);
+  grid-template-rows: repeat(5, 45px);
 
   grid-template-areas:
     "clear sign  percent divide"
@@ -39,17 +39,24 @@
     "key_0 key_0 dot     equals"
   ;
 }
+.calculator__normal .special-key {
+  display: none;
+}
+
 .calculator__scientific {
-  grid-template-columns: repeat(7, 58px);
-  grid-template-rows: repeat(5, 48px);
+  grid-template-columns: repeat(8, 55px);
+  grid-template-rows: repeat(5, 45px);
 
   grid-template-areas:
-    "X X X clear sign  percent divide"
-    "X X X key_7 key_8 key_9   multiply"
-    "X X X key_4 key_5 key_6   subtract"
-    "X X X key_1 key_2 key_3   add"
-    "X X X key_0 key_0 dot     equals"
+    "key-m-c   key-m-plus key-m-minus key-m-r         clear sign  percent divide"
+    "key-sin   key-cos    key-tan     key-e           key_7 key_8 key_9   multiply"
+    "key-x-fac key-x2     key-x3      key-pi          key_4 key_5 key_6   subtract"
+    "key-xy    key-ex     key-10x     key-log10       key_1 key_2 key_3   add"
+    "key-1x    key-2sqrtx key-ysqrtx  key-ln          key_0 key_0 dot     equals"
   ;
+}
+.calculator__scientific .special-key {
+  display: block;
 }
 
 .key-clear {     grid-area: clear; }
@@ -72,15 +79,38 @@
 .key-0 {         grid-area: key_0; }
 .key-dot {       grid-area: dot; }
 
+.key-m-c {        grid-area: key-m-c; }
+.key-m-plus {     grid-area: key-m-plus; }
+.key-m-minus {    grid-area: key-m-minus; }
+.key-m-r {        grid-area: key-m-r; }
+.key-sin {        grid-area: key-sin; }
+.key-cos {        grid-area: key-cos; }
+.key-tan {        grid-area: key-tan; }
+.key-e {          grid-area: key-e; }
+.key-x-fac {      grid-area: key-x-fac; }
+.key-x2 {         grid-area: key-x2; }
+.key-x3 {         grid-area: key-x3; }
+.key-pi {         grid-area: key-pi; }
+.key-xy {         grid-area: key-xy; }
+.key-ex {         grid-area: key-ex; }
+.key-10x {        grid-area: key-10x; }
+.key-log10 {      grid-area: key-log10; }
+.key-1x {         grid-area: key-1x; }
+.key-2sqrtx {     grid-area: key-2sqrtx; }
+.key-ysqrtx {     grid-area: key-ysqrtx; }
+.key-ln {         grid-area: key-ln; }
+
 button {
   background-color: var(--alto);
 }
 
+.special-key,
 .key-clear,
 .key-sign,
 .key-percent {
   background-color: var(--alto-light);
 }
+.special-key:active,
 .key-clear:active,
 .key-sign:active,
 .key-percent:active {
@@ -131,4 +161,8 @@ button {
 .key-0:active,
 .key-dot:active {
   background-color: var(--active-key);
+}
+
+.special-key {
+  font-size: 15px;
 }

@@ -6,15 +6,14 @@ import { getFontSizeFor } from '../../../helpers/app'
 class CalculatorDisplay extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
-      fontSize: getFontSizeFor(nextProps.value)
+      fontSize: getFontSizeFor(nextProps.value, nextProps.mode)
     }
   }
 
   constructor(props) {
     super(props)
-
     this.state = {
-      fontSize: getFontSizeFor(props.value)
+      fontSize: getFontSizeFor(props.value, props.mode)
     }
   }
 
@@ -33,7 +32,8 @@ class CalculatorDisplay extends Component {
 }
 
 CalculatorDisplay.propTypes = {
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
+  mode: PropTypes.oneOf(['scientific', 'normal']).isRequired,
 }
 
 export default CalculatorDisplay

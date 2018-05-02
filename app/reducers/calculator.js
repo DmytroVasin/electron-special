@@ -29,6 +29,9 @@ export default function calculator(state = calc.currentState(), action = {}) {
   case types.TOGGLE_SIGN:
     return calc.toggleSign()
 
+  case types.APPLY_FUNC:
+    return calc.applyFunction(payload)
+
   default:
     return state
   }
