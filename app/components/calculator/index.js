@@ -50,45 +50,38 @@ class Calculator extends Component {
     return true
   }
 
-  // handleKeyDown = (event) => {
-  //   let { key } = event
+  handleKeyDown = (event) => {
+    let { key } = event
+    console.log(key)
 
-  //   if (key === 'Enter')
-  //     key = '='
+    if (key === 'Enter') {
+      this.onCalculate()
+    } else if ((/\d/).test(key)) {
+      this.onAddNumber(parseInt(key, 10))
+    } else if (key === '.') {
+      this.onDecimalPoint()
+    } else if (key === '/') {
+      this.onAddOperator('divide')
+    } else if (key === '*') {
+      this.onAddOperator('multiply')
+    } else if (key === '-') {
+      this.onAddOperator('subtract')
+    } else if (key === '+') {
+      this.onAddOperator('add')
+    } else if (key === '%') {
+      this.inputPercent()
+    }
 
-  //   if ((/\d/).test(key)) {
-  //     event.preventDefault()
-  //     this.inputDigit(parseInt(key, 10))
-  //   } else if (key in CalculatorOperations) {
-  //     event.preventDefault()
-  //     this.performOperation(key)
-  //   } else if (key === '.') {
-  //     event.preventDefault()
-  //     this.inputDot()
-  //   } else if (key === '%') {
-  //     event.preventDefault()
-  //     this.inputPercent()
-  //   } else if (key === 'Backspace') {
-  //     event.preventDefault()
-  //     this.clearLastChar()
-  //   } else if (key === 'Clear') {
-  //     event.preventDefault()
+    event.preventDefault()
+  }
 
-  //     if (this.state.displayValue !== '0') {
-  //       this.clearDisplay()
-  //     } else {
-  //       this.clearAll()
-  //     }
-  //   }
-  // }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown)
+  }
 
-  // componentDidMount() {
-  //   document.addEventListener('keydown', this.handleKeyDown)
-  // }
-
-  // componentWillUnmount() {
-  //   document.removeEventListener('keydown', this.handleKeyDown)
-  // }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown)
+  }
 
   render() {
     const { displayValue } = this.props.calculator
